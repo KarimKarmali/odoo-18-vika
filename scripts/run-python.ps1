@@ -49,6 +49,7 @@ try {
 Write-Host "Iniciando Odoo 18..." -ForegroundColor Green
 Write-Host "URL: http://localhost:8069" -ForegroundColor Cyan
 Write-Host "Master Password: admin123" -ForegroundColor Cyan
+Write-Host "Database: vk_dev" -ForegroundColor Cyan
 Write-Host "Pressione Ctrl+C para parar" -ForegroundColor Yellow
 
-odoo -c config/odoo-python.conf --dev=all
+python ./odoo-source/odoo-bin -c config/odoo-python.conf -d vk_dev --dev=all

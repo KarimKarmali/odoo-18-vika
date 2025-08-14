@@ -46,3 +46,12 @@ npm-debug.log*
 # Logs
 logs/
 *.log
+
+# Odoo source (clone externo)
+odoo-source/
+
+# Ambiente virtual Python
+venv/
+
+# Dados do Odoo
+data/

@@ -9,6 +9,8 @@ if (Get-Command python -ErrorAction SilentlyContinue) {
     $pythonCmd = "python"
 } elseif (Get-Command py -ErrorAction SilentlyContinue) {
     $pythonCmd = "py"
+} elseif (Test-Path "C:\Users\karim\AppData\Local\Programs\Python\Python312\python.exe") {
+    $pythonCmd = "C:\Users\karim\AppData\Local\Programs\Python\Python312\python.exe"
 } else {
     Write-Host "Python nao encontrado! Instale Python 3.10+ primeiro." -ForegroundColor Red
     Write-Host "Download: https://www.python.org/downloads/" -ForegroundColor Yellow
