@@ -1,0 +1,20 @@
+# Contexto do projeto
+- Este repo contém módulos Odoo 18. NÃO alterar core Odoo.
+- Prioridade de addons_path: addons/custom, addons/oca, odoo core.
+
+# Estilo e linters
+- Usar Python 3.10+; ruff + pylint-odoo; pre-commit obrigatório.
+- Não introduzir dependências sem atualizar requirements e scripts.
+
+# Como executar
+- Arrancar via docker-compose (ver scripts/run.sh).
+- Testes: `scripts/test.sh` (usa odoo --test-enable).
+
+# Regras de modificação
+- Só tocar em addons/custom/* salvo indicação explícita.
+- Para novo campo: criar migration (post-migration) se necessário.
+- Toda PR precisa de: changelog em docs/, testes, e update do __manifest__.py.
+
+# Escopo do agente
+- Antes de propor alterações, abrir e ler: config/odoo.conf, scripts/*, __manifest__.py do addon alvo.
+- Se a tarefa envolver webclient JS, trabalhar apenas no addon alvo (não no core web).

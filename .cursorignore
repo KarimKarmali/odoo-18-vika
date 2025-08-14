@@ -1,0 +1,10 @@
+**/.git
+**/__pycache__
+**/.venv
+**/node_modules
+server/*
+addons/oca/*           # deixe só o(s) addon(s) OCA que está a tocar hoje
+odoo/addons/*          # se tiver uma cópia do core, ignore
+**/.cache
+dist/*
+build/*
