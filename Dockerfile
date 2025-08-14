@@ -11,7 +11,10 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copiar addons customizados
+# Criar diretórios de addons
+RUN mkdir -p /opt/odoo/addons/custom /opt/odoo/addons/oca
+
+# Copiar addons customizados (se existirem)
 COPY addons/custom /opt/odoo/addons/custom
 COPY addons/oca /opt/odoo/addons/oca
 

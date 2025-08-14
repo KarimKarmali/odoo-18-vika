@@ -35,7 +35,7 @@ services:
       - USER=odoo
       - PASSWORD=odoo
     restart: unless-stopped
-    command: odoo -c /etc/odoo/odoo.conf -d odoo_db --dev=all
+    command: odoo -c /etc/odoo/odoo.conf --dev=all
 
 volumes:
   postgres_data:
