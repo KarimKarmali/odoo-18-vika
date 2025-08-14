@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Force Accounting Menu Visibility for Community Edition -->
+        <!-- This fixes known issues with Cybrosys modules in Odoo 18 CE -->
+        
+        <!-- Main Accounting Menu -->
+        <record model="ir.ui.menu" id="account.menu_finance">
+            <field name="name">Accounting</field>
+            <field name="sequence">25</field>
+            <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>
+        </record>
+        
+        <!-- Accounting Dashboard -->
+        <record model="ir.ui.menu" id="account.menu_board_journal_1">
+            <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>
+        </record>
+        
+        <!-- Accounting Reports -->
+        <record model="ir.ui.menu" id="account.menu_finance_reports">
+            <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>
+        </record>
+        
+        <!-- Accounting Configuration -->
+        <record model="ir.ui.menu" id="account.menu_finance_configuration">
+            <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>
+        </record>
+        
+        <!-- Customer Invoices -->
+        <record model="ir.ui.menu" id="account.menu_action_move_out_invoice_type">
+            <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>
+        </record>
+        
+        <!-- Vendor Bills -->
+        <record model="ir.ui.menu" id="account.menu_action_move_in_invoice_type">
+            <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>
+        </record>
+        
+        <!-- Accounting Entries -->
+        <record model="ir.ui.menu" id="account.menu_finance_entries">
+            <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>
+        </record>
+        
+    </data>
+</odoo>
