@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Ação para abrir manual -->
+    <record id="action_manual_accounting" model="ir.actions.act_url">
+        <field name="name">Manual de Contabilidade VIKA</field>
+        <field name="url">https://github.com/OCA/mis-builder/blob/18.0/README.rst</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu item -->
+    <menuitem id="menu_manual_accounting"
+              name="📖 Manual de Contabilidade"
+              parent="account.menu_finance"
+              action="action_manual_accounting"
+              sequence="999"/>
+</odoo>
+

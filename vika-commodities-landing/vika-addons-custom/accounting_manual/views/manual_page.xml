@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="accounting_manual_page" name="Manual de Contabilidade VIKA">
+        <t t-call="web.layout">
+            <t t-set="head">
+                <link rel="stylesheet" href="/accounting_manual/static/src/css/manual.css"/>
+                <script src="/accounting_manual/static/src/js/manual.js"></script>
+            </t>
+            
+            <div class="container-fluid accounting-manual">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Header -->
+                        <div class="manual-header text-center py-4 mb-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px;">
+                            <h1 class="display-4">
+                                <i class="fa fa-book"></i> Manual de Contabilidade VIKA
+                            </h1>
+                            <p class="lead">Documentação completa dos módulos OCA instalados no Odoo 18</p>
+                            <p class="small">
+                                <i class="fa fa-calendar"></i> Atualizado: Janeiro 2025 | 
+                                <i class="fa fa-code-branch"></i> Versão: 1.0.0 | 
+                                <i class="fa fa-building"></i> VIKA Soluções Empresariais
+                            </p>
+                        </div>
+
+                        <!-- Conteúdo do Manual -->
+                        <div class="manual-content card shadow-sm">
+                            <div class="card-body">
+                                <t t-raw="manual_content"/>
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="manual-footer text-center py-4 mt-4" style="background: #f8f9fa; border-radius: 10px;">
+                            <p class="mb-2">
+                                <strong>Suporte Técnico:</strong> 
+                                <a href="mailto:suporte@vika.pt">suporte@vika.pt</a> | 
+                                <strong>Formação:</strong> 
+                                <a href="mailto:formacao@vika.pt">formacao@vika.pt</a>
+                            </p>
+                            <p class="small text-muted mb-0">
+                                <i class="fa fa-shield"></i> Sistema certificado OCA | 
+                                <i class="fa fa-lock"></i> GDPR Compliant | 
+                                <i class="fa fa-flag"></i> Localização Portugal
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
+

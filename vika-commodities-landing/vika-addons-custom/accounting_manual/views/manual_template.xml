@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="accounting_manual_template" name="Manual de Contabilidade VIKA">
+        <t t-call="web.layout">
+            <div class="container-fluid accounting-manual">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Header -->
+                        <div class="manual-header text-center py-4">
+                            <h1 class="display-4 text-primary">
+                                <i class="fa fa-book"></i> Manual de Contabilidade VIKA
+                            </h1>
+                            <p class="lead">Documentação completa dos módulos OCA instalados</p>
+                            <hr class="my-4"/>
+                        </div>
+
+                        <!-- Navegação rápida -->
+                        <div class="manual-nav mb-5">
+                            <h2><i class="fa fa-compass"></i> Navegação Rápida</h2>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <ul class="list-unstyled">
+                                        <li><a href="#overview">📋 Visão Geral</a></li>
+                                        <li><a href="#menus">🎯 Menus de Contabilidade</a></li>
+                                        <li><a href="#mis-builder">📊 MIS Builder</a></li>
+                                        <li><a href="#reports">📈 Relatórios Financeiros</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-3">
+                                    <ul class="list-unstyled">
+                                        <li><a href="#invoicexpress">🇵🇹 InvoiceXpress</a></li>
+                                        <li><a href="#assets">💰 Gestão de Ativos</a></li>
+                                        <li><a href="#tax-balance">📊 Balancete Fiscal</a></li>
+                                        <li><a href="#partner-statement">👥 Extratos de Parceiros</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-3">
+                                    <ul class="list-unstyled">
+                                        <li><a href="#xlsx-reports">📄 Relatórios Excel</a></li>
+                                        <li><a href="#date-ranges">📅 Períodos Contábeis</a></li>
+                                        <li><a href="#templates">📝 Templates</a></li>
+                                        <li><a href="#best-practices">⭐ Melhores Práticas</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-3">
+                                    <ul class="list-unstyled">
+                                        <li><a href="#configuration">⚙️ Configuração</a></li>
+                                        <li><a href="#troubleshooting">🔧 Resolução de Problemas</a></li>
+                                        <li><a href="#support">📞 Suporte</a></li>
+                                        <li><a href="#updates">🔄 Atualizações</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Conteúdo do manual será carregado dinamicamente -->
+                        <div id="manual-content">
+                            <!-- O conteúdo será inserido aqui via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
+

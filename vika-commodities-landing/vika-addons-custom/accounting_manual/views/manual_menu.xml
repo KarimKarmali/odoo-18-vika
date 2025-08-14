@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Ação para abrir o manual -->
+    <record id="action_accounting_manual" model="ir.actions.act_url">
+        <field name="name">Manual de Contabilidade VIKA</field>
+        <field name="url">/accounting_manual</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu item no menu de Contabilidade -->
+    <menuitem id="menu_accounting_manual"
+              name="📖 Manual de Contabilidade"
+              parent="account.menu_finance"
+              action="action_accounting_manual"
+              sequence="999"/>
+</odoo>

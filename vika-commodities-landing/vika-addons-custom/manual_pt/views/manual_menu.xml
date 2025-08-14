@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Ação para Manual PT -->
+    <record id="action_manual_pt" model="ir.actions.act_url">
+        <field name="name">Manual de Contabilidade VIKA</field>
+        <field name="url">/account_usability/static/description/manual_contabilidade.html</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu Manual PT no submenu Accounting/Reporting -->
+    <menuitem id="menu_manual_pt"
+              name="📖 Manual PT"
+              parent="account.menu_finance_reports"
+              action="action_manual_pt"
+              sequence="1"/>
+</odoo>
+
