@@ -10,11 +10,16 @@ echo  VK Commodities - Odoo 18
 echo ================================================
 echo.
 
+echo [INFO] Exportando estado dos módulos instalados...
+call venv\Scripts\activate.bat
+python scripts/export-module-state.py
+
+echo.
 echo [INFO] Verificando alterações...
 git status
 
 echo.
-echo [INFO] Adicionando TODOS os arquivos (incluindo módulos)...
+echo [INFO] Adicionando TODOS os arquivos (incluindo módulos e estados)...
 git add .
 
 echo.

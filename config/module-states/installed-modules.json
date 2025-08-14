@@ -1,0 +1,420 @@
+{
+  "exported_at": "2025-08-14T16:13:15.866105",
+  "database": "vk_dev",
+  "total_modules": 59,
+  "modules": [
+    {
+      "name": "account",
+      "state": "installed",
+      "version": "18.0.1.3",
+      "auto_install": false,
+      "application": true
+    },
+    {
+      "name": "account_edi_ubl_cii",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "account_payment",
+      "state": "installed",
+      "version": "18.0.2.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "analytic",
+      "state": "installed",
+      "version": "18.0.1.2",
+      "auto_install": false,
+      "application": false
+    },
+    {
+      "name": "auth_signup",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "auth_totp",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "auth_totp_mail",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "auth_totp_portal",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "base",
+      "state": "installed",
+      "version": "18.0.1.3",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "base_import",
+      "state": "installed",
+      "version": "18.0.2.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "base_import_module",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "base_install_request",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "base_setup",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "base_vat",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": false,
+      "application": false
+    },
+    {
+      "name": "bus",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "digest",
+      "state": "installed",
+      "version": "18.0.1.1",
+      "auto_install": false,
+      "application": false
+    },
+    {
+      "name": "google_gmail",
+      "state": "installed",
+      "version": "18.0.1.2",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "html_editor",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "http_routing",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": false,
+      "application": false
+    },
+    {
+      "name": "iap",
+      "state": "installed",
+      "version": "18.0.1.1",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "iap_mail",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "l10n_pt",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "l10n_us",
+      "state": "installed",
+      "version": "18.0.1.1",
+      "auto_install": false,
+      "application": false
+    },
+    {
+      "name": "l10n_us_account",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "mail",
+      "state": "installed",
+      "version": "18.0.1.18",
+      "auto_install": false,
+      "application": true
+    },
+    {
+      "name": "mail_bot",
+      "state": "installed",
+      "version": "18.0.1.2",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "onboarding",
+      "state": "installed",
+      "version": "18.0.1.2",
+      "auto_install": false,
+      "application": false
+    },
+    {
+      "name": "partner_autocomplete",
+      "state": "installed",
+      "version": "18.0.1.1",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "payment",
+      "state": "installed",
+      "version": "18.0.2.0",
+      "auto_install": false,
+      "application": false
+    },
+    {
+      "name": "phone_validation",
+      "state": "installed",
+      "version": "18.0.2.1",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "portal",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": false,
+      "application": false
+    },
+    {
+      "name": "privacy_lookup",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "product",
+      "state": "installed",
+      "version": "18.0.1.2",
+      "auto_install": false,
+      "application": false
+    },
+    {
+      "name": "purchase",
+      "state": "installed",
+      "version": "18.0.1.2",
+      "auto_install": false,
+      "application": true
+    },
+    {
+      "name": "purchase_edi_ubl_bis3",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "resource",
+      "state": "installed",
+      "version": "18.0.1.1",
+      "auto_install": false,
+      "application": false
+    },
+    {
+      "name": "resource_mail",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "sale",
+      "state": "installed",
+      "version": "18.0.1.2",
+      "auto_install": false,
+      "application": false
+    },
+    {
+      "name": "sale_async_emails",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "sale_edi_ubl",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "sale_management",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": false,
+      "application": true
+    },
+    {
+      "name": "sale_pdf_quote_builder",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "sale_purchase",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "sale_sms",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "sales_team",
+      "state": "installed",
+      "version": "18.0.1.1",
+      "auto_install": false,
+      "application": false
+    },
+    {
+      "name": "sms",
+      "state": "installed",
+      "version": "18.0.3.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "snailmail",
+      "state": "installed",
+      "version": "18.0.0.4",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "snailmail_account",
+      "state": "installed",
+      "version": "18.0.0.1",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "spreadsheet",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": false,
+      "application": false
+    },
+    {
+      "name": "spreadsheet_account",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "spreadsheet_dashboard",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": false,
+      "application": false
+    },
+    {
+      "name": "spreadsheet_dashboard_account",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "spreadsheet_dashboard_sale",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "uom",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": false,
+      "application": false
+    },
+    {
+      "name": "utm",
+      "state": "installed",
+      "version": "18.0.1.1",
+      "auto_install": false,
+      "application": false
+    },
+    {
+      "name": "web",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "web_editor",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "web_tour",
+      "state": "installed",
+      "version": "18.0.1.0",
+      "auto_install": true,
+      "application": false
+    },
+    {
+      "name": "web_unsplash",
+      "state": "installed",
+      "version": "18.0.1.1",
+      "auto_install": true,
+      "application": false
+    }
+  ]
+}
