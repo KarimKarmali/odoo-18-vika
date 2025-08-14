@@ -1,0 +1,48 @@
+# Odoo 18 - VK Commodities .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+
+# Odoo específico
+*.pyc
+*~
+.*.swp
+*.log
+filestore/
+sessions/
+
+# Docker
+.dockerignore
+
+# Desenvolvimento
+.vscode/
+.idea/
+*.code-workspace
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Backup e dados
+*.backup
+*.dump
+*.sql
+
+# Configurações locais (copiar odoo.conf.example)
+config/odoo-local.conf
+
+# Node modules (se usar JS)
+node_modules/
+npm-debug.log*
+
+# Logs
+logs/
+*.log

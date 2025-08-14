@@ -1,0 +1,42 @@
+# Docker Compose para desenvolvimento local
+# VK Commodities - Odoo 18
+
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: vk_postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  odoo:
+    build: .
+    container_name: vk_odoo
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+      # Bind mounts para desenvolvimento
+      - ./addons/custom:/opt/odoo/addons/custom
+      - ./addons/oca:/opt/odoo/addons/oca
+      - ./config/odoo.conf:/etc/odoo/odoo.conf
+      - odoo_data:/var/lib/odoo
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo
+    restart: unless-stopped
+    command: odoo -c /etc/odoo/odoo.conf -d odoo_db --dev=all
+
+volumes:
+  postgres_data:
+  odoo_data:
