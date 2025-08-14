@@ -53,5 +53,6 @@ odoo-source/
 # Ambiente virtual Python
 venv/
 
-# Dados do Odoo
-data/
+# Dados do Odoo (apenas filestore, não addons)
+data/filestore/
+data/sessions/

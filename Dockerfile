@@ -18,11 +18,14 @@ RUN mkdir -p /opt/odoo/addons/custom /opt/odoo/addons/oca
 COPY addons/custom /opt/odoo/addons/custom
 COPY addons/oca /opt/odoo/addons/oca
 
+# Copiar módulos baixados/instalados
+COPY data/addons /opt/odoo/data/addons
+
 # Copiar configuração
 COPY config/odoo.conf /etc/odoo/
 
 # Configurar permissões
-RUN chown -R odoo:odoo /opt/odoo/addons/custom /opt/odoo/addons/oca
+RUN chown -R odoo:odoo /opt/odoo/addons/custom /opt/odoo/addons/oca /opt/odoo/data/addons
 
 USER odoo
 

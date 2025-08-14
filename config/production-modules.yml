@@ -1,0 +1,45 @@
+# Infrastructure as Code - Módulos Odoo
+# VK Commodities - Configuração de Produção
+
+# Módulos obrigatórios que devem estar sempre instalados
+required_modules:
+  # Core Business
+  - sale_management      # Vendas
+  - purchase             # Compras  
+  - stock                # Inventário
+  - account_accountant   # Contabilidade
+  
+  # CRM & Marketing
+  - crm                  # CRM
+  - website              # Website
+  
+  # Operações
+  - project              # Projetos
+  - hr                   # Recursos Humanos
+  
+  # Reporting
+  - account_reports      # Relatórios Financeiros
+
+# Módulos opcionais (dependem do ambiente)
+optional_modules:
+  development:
+    - base_import_module # Import de módulos
+    - web_tour          # Tours de interface
+    
+  production:
+    - auth_oauth        # Login social
+    - mail_plugin       # Plugin email
+
+# Configurações da empresa
+company:
+  name: "VK Commodities"
+  currency: "EUR" 
+  country: "Portugal"
+  timezone: "Europe/Lisbon"
+  language: "pt_PT"
+
+# Configurações de sistema
+system:
+  workers: 4
+  max_cron_threads: 2
+  log_level: "warn"  # prod usa menos logs
