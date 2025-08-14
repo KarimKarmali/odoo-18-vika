@@ -55,7 +55,7 @@ try:
     conn.close()
 except Exception as e:
     print(f'Erro: {e}')
-    print('Certifique-se que PostgreSQL está rodando e database existe.')
+    print('Certifique-se que PostgreSQL esta rodando e database existe.')
 "
     }
     

@@ -11,7 +11,7 @@
     "installable": True,
     "depends": ["web"],
     "data": [
-        "data/ir_cron_data.xml",
+        # "data/ir_cron_data.xml",  # Desabilitado - será criado via hook
         "security/ir.model.access.csv",
         "security/date_range_security.xml",
         "views/date_range_view.xml",
