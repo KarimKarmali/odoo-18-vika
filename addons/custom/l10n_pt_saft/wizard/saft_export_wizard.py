@@ -63,6 +63,9 @@ class SaftExportWizard(models.TransientModel):
             'state': 'exported'
         })
         
+        # Salvar no histórico
+        self.env['l10n.pt.saft.export.history'].create_history_record(self)
+        
         # Retornar ação para download
         return {
             'type': 'ir.actions.act_window',

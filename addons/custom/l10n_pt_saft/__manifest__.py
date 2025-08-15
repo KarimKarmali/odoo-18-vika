@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'SAF-T Portugal (VK Commodities)',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.1.0',
     'category': 'Accounting/Localizations',
     'summary': 'SAF-T (Standard Audit File for Tax purposes) for Portugal - Monthly Compliance',
     'description': """
@@ -38,6 +38,7 @@ Developed for VK Commodities based on Portuguese legal requirements.
         'views/res_partner_view.xml', 
         'views/account_tax_view.xml',
         'views/account_journal_view.xml',
+        'views/saft_export_history_view_simple.xml',
         'wizard/saft_export_wizard_view.xml',
     ],
     'installable': True,
