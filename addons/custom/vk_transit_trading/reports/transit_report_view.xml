@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- TODO: Transit Report Views - Comentado para versão inicial -->
+        <!--
+        <record id="view_transit_report_list" model="ir.ui.view">
+            <field name="name">vk.transit.report.list</field>
+            <field name="model">vk.transit.report</field>
+            <field name="arch" type="xml">
+                <list string="Relatório de Mercadoria em Trânsito">
+                    <field name="document_name"/>
+                    <field name="partner_name"/>
+                    <field name="product_name"/>
+                    <field name="quantity_pending"/>
+                    <field name="pending_value"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_transit_report_search" model="ir.ui.view">
+            <field name="name">vk.transit.report.search</field>
+            <field name="model">vk.transit.report</field>
+            <field name="arch" type="xml">
+                <search string="Pesquisar Mercadoria em Trânsito">
+                    <field name="partner_name"/>
+                    <field name="product_name"/>
+                </search>
+            </field>
+        </record>
+        -->
+
+        <!-- TODO: Implementar views summary numa versão futura -->
+
+        <!-- TODO: Actions for Reports - Comentado para versão inicial -->
+        <!--
+        <record id="action_transit_report" model="ir.actions.act_window">
+            <field name="name">📊 Mapa de Mercadoria em Trânsito</field>
+            <field name="res_model">vk.transit.report</field>
+            <field name="view_mode">list</field>
+        </record>
+        -->
+
+        <!-- TODO: Action summary para versão futura -->
+
+        <!-- TODO: Menu for Reports - Comentado para versão inicial -->
+        <!--
+        <menuitem id="menu_transit_reports"
+                  name="Relatórios"
+                  parent="menu_vk_transit_trading_root"
+                  sequence="20"/>
+
+        <menuitem id="menu_transit_report_detailed"
+                  name="📊 Mapa de Trânsito"
+                  parent="menu_transit_reports"
+                  action="action_transit_report"
+                  sequence="10"/>
+        -->
+
+        <!-- TODO: Menu summary para versão futura -->
+
+        <!-- Dashboard Action -->
+        <record id="action_transit_dashboard" model="ir.actions.act_window">
+            <field name="name">🏠 Dashboard Trânsito</field>
+            <field name="res_model">vk.transit.document</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="domain">[('document_type', '=', 'purchase_transit'), ('state', 'in', ['in_transit', 'received'])]</field>
+            <field name="context">{'search_default_overdue': 1}</field>
+        </record>
+
+        <menuitem id="menu_transit_dashboard"
+                  name="🏠 Dashboard"
+                  parent="menu_vk_transit_trading_root"
+                  action="action_transit_dashboard"
+                  sequence="1"/>
+
+    </data>
+</odoo>

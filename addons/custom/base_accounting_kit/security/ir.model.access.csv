@@ -1,4 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_manual_utilizador_user,manual.utilizador.user,model_manual_utilizador,account.group_account_user,1,0,0,0
+access_manual_utilizador_manager,manual.utilizador.manager,model_manual_utilizador,account.group_account_manager,1,0,0,0
 access_financial_report_user,account_fin_rep_name_user,model_account_financial_report,account.group_account_user,1,1,1,1
 access_financial_report_manager,account_fin_rep_name_manager,model_account_financial_report,account.group_account_manager,1,1,1,1
 access_account_followup_manager,account.followup.manager,model_account_followup,account.group_account_manager,1,1,1,1

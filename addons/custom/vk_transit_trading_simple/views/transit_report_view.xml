@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Mapa de Mercadoria em Trânsito - List View -->
+        <record id="view_transit_report_list" model="ir.ui.view">
+            <field name="name">account.transit.report.list</field>
+            <field name="model">account.transit.report</field>
+            <field name="arch" type="xml">
+                <list string="Mapa de Mercadoria em Trânsito" 
+                      create="false" edit="false" delete="false">
+                    
+                    <field name="move_date"/>
+                    <field name="account_code"/>
+                    <field name="account_name"/>
+                    <field name="partner_name"/>
+                    <field name="product_name"/>
+                    <field name="move_ref"/>
+                    <field name="debit" sum="Total Débito"/>
+                    <field name="credit" sum="Total Crédito"/>
+                    <field name="balance" sum="Saldo Total"/>
+                    
+                </list>
+            </field>
+        </record>
+
+        <!-- Mapa de Mercadoria em Trânsito - Search View -->
+        <record id="view_transit_report_search" model="ir.ui.view">
+            <field name="name">account.transit.report.search</field>
+            <field name="model">account.transit.report</field>
+            <field name="arch" type="xml">
+                <search string="Pesquisar Mercadoria em Trânsito">
+                    
+                    <field name="account_code"/>
+                    <field name="partner_name"/>
+                    <field name="product_name"/>
+                    <field name="move_ref"/>
+                    
+                    <filter name="has_balance" string="Com Saldo" 
+                            domain="[('balance', '!=', 0)]"/>
+                    
+                    <group expand="1" string="Agrupar por">
+                        <filter name="group_account" string="Conta" 
+                                context="{'group_by': 'account_code'}"/>
+                        <filter name="group_partner" string="Parceiro" 
+                                context="{'group_by': 'partner_name'}"/>
+                        <filter name="group_product" string="Produto" 
+                                context="{'group_by': 'product_name'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action para o Relatório -->
+        <record id="action_transit_report" model="ir.actions.act_window">
+            <field name="name">🚛 Mapa de Mercadoria em Trânsito</field>
+            <field name="res_model">account.transit.report</field>
+            <field name="view_mode">list</field>
+            <field name="context">{'search_default_has_balance': 1}</field>
+        </record>
+
+        <!-- Menu em Accounting > Reporting -->
+        <menuitem id="menu_transit_report"
+                  name="🚛 Mapa Mercadoria em Trânsito"
+                  parent="account.menu_finance_reports"
+                  action="action_transit_report"
+                  sequence="50"/>
+
+    </data>
+</odoo>

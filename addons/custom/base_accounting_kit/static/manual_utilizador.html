@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual do Utilizador - Contabilidade VK Commodities</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .highlight {
+            background: #e8f4f8;
+            padding: 15px;
+            border-left: 4px solid #17a2b8;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .warning {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .success {
+            background: #d4edda;
+            padding: 15px;
+            border-left: 4px solid #28a745;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        h1 { color: white; margin: 0; }
+        h2 { color: #495057; border-bottom: 2px solid #dee2e6; padding-bottom: 10px; }
+        h3 { color: #6c757d; }
+        .menu-path {
+            background: #f8f9fa;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: monospace;
+            border: 1px solid #dee2e6;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        ul li { margin-bottom: 8px; }
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .toc ul { columns: 2; }
+        @media (max-width: 768px) {
+            .toc ul { columns: 1; }
+            body { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📖 Manual do Utilizador</h1>
+        <h2>Sistema de Contabilidade VK Commodities</h2>
+        <p>Guia completo para utilização do Odoo 18 - Módulos de Contabilidade</p>
+    </div>
+
+    <div class="section toc">
+        <h2>📋 Índice</h2>
+        <ul>
+            <li><a href="#navegacao">🔐 Acesso e Navegação</a></li>
+            <li><a href="#mapa-transito">📊 Mapa de Trânsito (Novo!)</a></li>
+            <li><a href="#transito">🚛 Mercadoria em Trânsito</a></li>
+            <li><a href="#saft">📄 SAF-T para a AT</a></li>
+            <li><a href="#reconciliacao">🏦 Reconciliação Bancária</a></li>
+            <li><a href="#fecho-mes">📅 Fecho do Mês</a></li>
+            <li><a href="#acrescimos">📈 Acréscimos</a></li>
+        </ul>
+    </div>
+
+    <div class="section" id="mapa-transito">
+        <h2>📊 Mapa de Mercadoria em Trânsito (Novo!)</h2>
+        
+        <div class="success">
+            <strong>🆕 NOVIDADE:</strong> Relatório especializado para controlo de mercadoria em trânsito desenvolvido especificamente para VK Commodities!
+        </div>
+
+        <h3>🎯 Como Aceder</h3>
+        <div class="menu-path">Accounting > Reporting > 🚛 Mapa Mercadoria em Trânsito</div>
+
+        <h3>💡 O que Mostra</h3>
+        <ul>
+            <li>📅 <strong>Todos os movimentos</strong> das contas 36x em tempo real</li>
+            <li>🏢 <strong>Fornecedores</strong> com mercadoria pendente</li>
+            <li>📦 <strong>Produtos</strong> específicos em trânsito</li>
+            <li>💰 <strong>Valores</strong> exatos por movimento</li>
+            <li>📄 <strong>Referências</strong> de facturas/documentos</li>
+        </ul>
+
+        <h3>🔍 Funcionalidades</h3>
+        <ul>
+            <li>✅ <strong>Filtro "Com Saldo"</strong> (ativo por defeito)</li>
+            <li>✅ <strong>Pesquisa</strong> por fornecedor, produto, referência</li>
+            <li>✅ <strong>Agrupamento</strong> por conta, parceiro, produto</li>
+            <li>✅ <strong>Export</strong> para Excel nativo</li>
+            <li>✅ <strong>Soma automática</strong> de débitos, créditos, saldos</li>
+        </ul>
+
+        <h3>📊 Validação vs Balancete</h3>
+        <div class="highlight">
+            <strong>🔄 PROCESSO SIMPLES:</strong><br>
+            1. <code>Accounting > Reporting > Trial Balance</code> - Filtrar contas 36x e anotar valores<br>
+            2. <code>Accounting > Reporting > 🚛 Mapa Mercadoria</code> - Verificar soma dos saldos<br>
+            3. <strong>Comparar:</strong> ✅ Valores iguais = OK! | ❌ Diferenças = Investigar
+        </div>
+
+        <h3>📈 Vantagens</h3>
+        <ul>
+            <li>⚡ <strong>Tempo real</strong> - sempre atualizado</li>
+            <li>🎯 <strong>Específico</strong> - só dados relevantes</li>
+            <li>🔍 <strong>Detalhado</strong> - linha por linha</li>
+            <li>📊 <strong>Comparável</strong> - facilita validação</li>
+            <li>💾 <strong>Exportável</strong> - para análise externa</li>
+        </ul>
+    </div>
+
+    <div class="section" id="transito">
+        <h2>🚛 Mercadoria em Trânsito (Conta 36)</h2>
+        
+        <h3>O que é?</h3>
+        <p>Mercadoria <strong>comprada mas ainda não recebida fisicamente</strong></p>
+
+        <h3>Lançamento Correto</h3>
+        <div class="success">
+            <strong>✅ CORRETO:</strong><br>
+            • Débito: 36 - Mercadoria em trânsito €10,000<br>
+            • Crédito: 22 - Fornecedores €10,000
+        </div>
+
+        <div class="highlight">
+            <strong>🔄 QUANDO CHEGA:</strong><br>
+            • Débito: 31 - Mercadorias €10,000<br>
+            • Crédito: 36 - Mercadoria em trânsito €10,000
+        </div>
+    </div>
+
+    <div class="section" id="saft">
+        <h2>📄 SAF-T para a AT</h2>
+        
+        <div class="menu-path">Accounting > Reporting > SAF-T Export</div>
+        
+        <p><strong>Periodicidade:</strong> Mensal (obrigatório)</p>
+        <p><strong>Histórico:</strong> <code>Accounting > Reporting > SAF-T History</code></p>
+    </div>
+
+    <div class="section" id="reconciliacao">
+        <h2>🏦 Reconciliação Bancária</h2>
+        
+        <div class="menu-path">Accounting > Bank > Reconciliation</div>
+        
+        <ol>
+            <li>Importar extracto bancário</li>
+            <li>"Picar" cada movimento com factura</li>
+            <li>Validar saldo bancário = saldo ERP</li>
+        </ol>
+    </div>
+
+    <div class="section" id="fecho-mes">
+        <h2>📅 Fecho do Mês</h2>
+        
+        <h3>Conta 31 - Saldar?</h3>
+        <div class="highlight">
+            <strong>💡 NÃO:</strong> A conta 31 (Mercadorias) representa stock físico e não se salda mensalmente.
+        </div>
+    </div>
+
+    <div class="section" id="acrescimos">
+        <h2>📈 Acréscimos</h2>
+        
+        <h3>Lançar no Mês</h3>
+        <div class="success">
+            • Débito: 61 - Custos €1,000<br>
+            • Crédito: 24 - Acréscimos €1,000
+        </div>
+
+        <h3>Reverter no Mês Seguinte</h3>
+        <div class="warning">
+            • Débito: 24 - Acréscimos €1,000<br>
+            • Crédito: 61 - Custos €1,000
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="highlight">
+            <strong>📅 Última atualização:</strong> Agosto 2025<br>
+            <strong>🔄 Inclui:</strong> Novo Mapa de Mercadoria em Trânsito
+        </div>
+    </div>
+
+</body>
+</html>

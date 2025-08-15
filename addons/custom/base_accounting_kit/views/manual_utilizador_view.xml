@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Manual do Utilizador - Form View -->
+        <record id="view_manual_utilizador_form" model="ir.ui.view">
+            <field name="name">manual.utilizador.form</field>
+            <field name="model">manual.utilizador</field>
+            <field name="arch" type="xml">
+                <form string="Manual do Utilizador" create="false" edit="false" delete="false">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>📖 Manual do Utilizador - Contabilidade VK Commodities</h1>
+                        </div>
+                        <group>
+                            <field name="content" widget="html" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Manual do Utilizador - Action -->
+        <record id="action_manual_utilizador_window" model="ir.actions.act_window" forcecreate="true">
+            <field name="name">📖 Manual do Utilizador</field>
+            <field name="res_model">manual.utilizador</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_manual_utilizador_form"/>
+        </record>
+
+        <!-- Manual do Utilizador - Menu no submenu Accounting -->
+        <menuitem id="menu_manual_utilizador_new"
+                  name="📖 Manual do Utilizador"
+                  parent="account.menu_finance_entries"
+                  action="action_manual_utilizador_window"
+                  sequence="1"/>
+
+
+
+    </data>
+</odoo>

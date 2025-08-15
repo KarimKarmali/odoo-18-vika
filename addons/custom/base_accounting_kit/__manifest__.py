@@ -67,6 +67,7 @@
         'wizard/account_report_general_ledger_views.xml',
         'wizard/account_report_partner_ledger_views.xml',
         'wizard/kit_account_tax_report_views.xml',
+        'views/manual_utilizador_view.xml',
         'wizard/account_balance_report_views.xml',
         'wizard/account_aged_trial_balance_views.xml',
         'wizard/account_print_journal_views.xml',

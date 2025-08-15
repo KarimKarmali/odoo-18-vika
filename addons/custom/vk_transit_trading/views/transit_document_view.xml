@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Transit Document Form View -->
+        <record id="view_transit_document_form" model="ir.ui.view">
+            <field name="name">vk.transit.document.form</field>
+            <field name="model">vk.transit.document</field>
+            <field name="arch" type="xml">
+                <form string="Documento de Trânsito">
+                    <header>
+                        <button name="action_confirm" 
+                                string="Confirmar" 
+                                type="object" 
+                                class="btn-primary"
+                                invisible="state != 'draft'"/>
+                        <button name="action_receive" 
+                                string="Marcar Recebido" 
+                                type="object" 
+                                class="btn-success"
+                                invisible="state != 'in_transit' or document_type != 'purchase_transit'"/>
+                        <button name="action_reconcile_with_reception" 
+                                string="Reconciliar com Receção" 
+                                type="object" 
+                                class="btn-warning"
+                                invisible="state not in ['received', 'in_transit'] or document_type != 'purchase_transit'"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                            <h3>
+                                <field name="document_type" readonly="state != 'draft'"/>
+                            </h3>
+                        </div>
+                        
+                        <group>
+                            <group>
+                                <field name="partner_id" readonly="state != 'draft'"/>
+                                <field name="document_date" readonly="state != 'draft'"/>
+                                <field name="purchase_order_id" readonly="state != 'draft'" 
+                                       invisible="document_type != 'purchase_transit'"/>
+                                <field name="stock_picking_id" readonly="state != 'draft'"
+                                       invisible="document_type != 'reception'"/>
+                            </group>
+                            <group>
+                                <field name="expected_arrival_date" readonly="state != 'draft'"/>
+                                <field name="actual_arrival_date" readonly="1"/>
+                                <field name="days_in_transit" readonly="1"/>
+                                <field name="is_overdue" readonly="1"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="company_id" invisible="1"/>
+                            </group>
+                        </group>
+                        
+                        <notebook>
+                            <page string="Linhas do Documento" name="lines">
+                                <field name="line_ids" readonly="state not in ['draft', 'confirmed']">
+                                    <list editable="bottom">
+                                        <field name="product_id"/>
+                                        <field name="description"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="weight"/>
+                                        <field name="price_unit"/>
+                                        <field name="subtotal"/>
+                                        <field name="received_quantity" readonly="1"/>
+                                        <field name="pending_quantity" readonly="1"/>
+                                        <field name="currency_id" invisible="1"/>
+                                    </list>
+                                </field>
+                                
+                                <group class="oe_subtotal_footer oe_right">
+                                    <field name="total_quantity" readonly="1"/>
+                                    <field name="total_weight" readonly="1"/>
+                                    <field name="total_value" readonly="1"/>
+                                </group>
+                            </page>
+                            
+                            <page string="Informações Adicionais" name="additional">
+                                <group>
+                                    <group>
+                                        <field name="invoice_id" readonly="1"/>
+                                        <field name="related_document_id" readonly="1"/>
+                                    </group>
+                                </group>
+                                
+                                <group string="Observações">
+                                    <field name="notes" nolabel="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    
+
+                </form>
+            </field>
+        </record>
+
+        <!-- Transit Document List View -->
+        <record id="view_transit_document_list" model="ir.ui.view">
+            <field name="name">vk.transit.document.list</field>
+            <field name="model">vk.transit.document</field>
+            <field name="arch" type="xml">
+                <list string="Documentos de Trânsito" 
+                      decoration-warning="is_overdue == True"
+                      decoration-success="state == 'received'"
+                      decoration-muted="state == 'cancelled'">
+                    <field name="name"/>
+                    <field name="document_type"/>
+                    <field name="partner_id"/>
+                    <field name="document_date"/>
+                    <field name="expected_arrival_date"/>
+                    <field name="days_in_transit"/>
+                    <field name="total_quantity"/>
+                    <field name="total_value"/>
+                    <field name="state" decoration-bf="1"/>
+                    <field name="is_overdue" invisible="1"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Transit Document Search View -->
+        <record id="view_transit_document_search" model="ir.ui.view">
+            <field name="name">vk.transit.document.search</field>
+            <field name="model">vk.transit.document</field>
+            <field name="arch" type="xml">
+                <search string="Pesquisar Documentos de Trânsito">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="document_date"/>
+                    
+                    <filter name="dct_documents" string="DCT (Compras)" 
+                            domain="[('document_type', '=', 'purchase_transit')]"/>
+                    <filter name="dr_documents" string="DR (Receções)" 
+                            domain="[('document_type', '=', 'reception')]"/>
+                    
+                    <separator/>
+                    <filter name="in_transit" string="Em Trânsito" 
+                            domain="[('state', '=', 'in_transit')]"/>
+                    <filter name="overdue" string="Em Atraso" 
+                            domain="[('is_overdue', '=', True)]"/>
+                    <filter name="received" string="Recebidos" 
+                            domain="[('state', '=', 'received')]"/>
+                    
+                    <separator/>
+                    <filter name="this_month" string="Este Mês" 
+                            domain="[('document_date', '&gt;=', datetime.datetime.now().replace(day=1))]"/>
+                    <filter name="last_month" string="Mês Passado" 
+                            domain="[('document_date', '&gt;=', (datetime.datetime.now() - datetime.timedelta(days=30)))]"/>
+                    
+                    <group expand="1" string="Agrupar por">
+                        <filter name="group_partner" string="Fornecedor" 
+                                context="{'group_by': 'partner_id'}"/>
+                        <filter name="group_type" string="Tipo Documento" 
+                                context="{'group_by': 'document_type'}"/>
+                        <filter name="group_state" string="Estado" 
+                                context="{'group_by': 'state'}"/>
+                        <filter name="group_month" string="Mês" 
+                                context="{'group_by': 'document_date:month'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Actions -->
+        <record id="action_transit_document_dct" model="ir.actions.act_window">
+            <field name="name">DCT - Documentos Compra Trânsito</field>
+            <field name="res_model">vk.transit.document</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('document_type', '=', 'purchase_transit')]</field>
+            <field name="context">{'default_document_type': 'purchase_transit'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crie o seu primeiro DCT!
+                </p>
+                <p>
+                    Os Documentos de Compra em Trânsito (DCT) registam mercadoria 
+                    comprada que ainda não chegou fisicamente.
+                </p>
+            </field>
+        </record>
+
+        <record id="action_transit_document_dr" model="ir.actions.act_window">
+            <field name="name">DR - Documentos de Receção</field>
+            <field name="res_model">vk.transit.document</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('document_type', '=', 'reception')]</field>
+            <field name="context">{'default_document_type': 'reception'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crie o seu primeiro DR!
+                </p>
+                <p>
+                    Os Documentos de Receção (DR) registam a chegada física 
+                    da mercadoria ao armazém.
+                </p>
+            </field>
+        </record>
+
+        <record id="action_transit_document_all" model="ir.actions.act_window">
+            <field name="name">Todos os Documentos de Trânsito</field>
+            <field name="res_model">vk.transit.document</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Sistema de Trânsito está pronto!
+                </p>
+                <p>
+                    Gerir mercadoria em trânsito com documentos específicos 
+                    para trading without warehouse.
+                </p>
+            </field>
+        </record>
+
+        <!-- Menu Structure -->
+        <menuitem id="menu_vk_transit_trading_root"
+                  name="VK Transit Trading"
+                  sequence="50"/>
+
+        <menuitem id="menu_transit_documents"
+                  name="Documentos"
+                  parent="menu_vk_transit_trading_root"
+                  sequence="10"/>
+
+        <menuitem id="menu_transit_dct"
+                  name="DCT - Compras Trânsito"
+                  parent="menu_transit_documents"
+                  action="action_transit_document_dct"
+                  sequence="10"/>
+
+        <menuitem id="menu_transit_dr"
+                  name="DR - Receções"
+                  parent="menu_transit_documents"
+                  action="action_transit_document_dr"
+                  sequence="20"/>
+
+        <menuitem id="menu_transit_all"
+                  name="Todos os Documentos"
+                  parent="menu_transit_documents"
+                  action="action_transit_document_all"
+                  sequence="30"/>
+
+    </data>
+</odoo>

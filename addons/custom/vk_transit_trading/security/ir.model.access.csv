@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_transit_document_user,transit.document.user,model_vk_transit_document,stock.group_stock_user,1,1,1,0
+access_transit_document_manager,transit.document.manager,model_vk_transit_document,stock.group_stock_manager,1,1,1,1
+access_transit_document_line_user,transit.document.line.user,model_vk_transit_document_line,stock.group_stock_user,1,1,1,0
+access_transit_document_line_manager,transit.document.line.manager,model_vk_transit_document_line,stock.group_stock_manager,1,1,1,1
+# TODO: Descomentar quando relatório estiver funcional
+# access_transit_report_user,transit.report.user,model_vk_transit_report,stock.group_stock_user,1,0,0,0
+# access_transit_report_manager,transit.report.manager,model_vk_transit_report,stock.group_stock_manager,1,0,0,0
+

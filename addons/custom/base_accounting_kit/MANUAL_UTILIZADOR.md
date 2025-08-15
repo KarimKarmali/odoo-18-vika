@@ -24,7 +24,8 @@
 14. [Guias de Transporte](#guias-de-transporte)
 15. [Relatórios Financeiros](#relatórios-financeiros)
 16. [Centros de Custo](#centros-de-custo)
-17. [Perguntas Frequentes](#perguntas-frequentes)
+17. **[🚢 VK Transit Trading](#controlo-de-mercadoria-em-trânsito)** ⭐ **NOVO**
+18. [Perguntas Frequentes](#perguntas-frequentes)
 
 ---
 
@@ -39,6 +40,19 @@ Este manual destina-se aos **utilizadores finais** do sistema Odoo da VK Commodi
 - ✅ Como corrigir lançamentos contabilísticos
 - ✅ Como gerar o SAF-T para a AT
 - ✅ Como tirar relatórios e mapas
+
+### **🆕 NOVIDADE: Mapa de Mercadoria em Trânsito**
+```
+Relatório especializado para controlo de mercadoria em trânsito
+desenvolvido especificamente para VK Commodities!
+
+🎯 ACESSO: Accounting > Reporting > 🚛 Mapa Mercadoria em Trânsito
+📊 DESTAQUE: Consulta direta das contas 36x
+🔗 INTEGRAÇÃO: Dados em tempo real da contabilidade
+✅ CONFORMIDADE: Validação vs balancete automática
+
+Ver secção 17 para detalhes completos.
+```
 
 ---
 
@@ -881,6 +895,547 @@ Ficheiro fica em Downloads: SAFT_PT_[NIF]_[ANO].xml
 
 ---
 
+## 📊 **PROCESSOS CONTABILÍSTICOS AVANÇADOS**
+
+### **🏦 Reconciliação Bancária Detalhada**
+
+#### **Objetivo**
+Garantir que o saldo do extrato bancário coincide exatamente com o saldo contabilístico da conta bancária no ERP.
+
+#### **Processo Passo-a-Passo**
+
+##### **1. Importação do Extrato Bancário**
+```
+Accounting > Bank and Cash > Bank Statements
+- Create > Import Statement
+- Selecionar ficheiro do banco (OFX, CSV, Excel)
+- Verificar data e valor final
+```
+
+##### **2. "Picar" Pagamentos e Recebimentos**
+```
+Para cada linha do extrato:
+
+RECEBIMENTOS:
+1. Identificar cliente/fatura
+2. Accounting > Bank Statements > [Extrato] > Reconcile
+3. Selecionar movimento bancário
+4. Matching com fatura em aberto:
+   - Customer Invoices > [Fatura pendente]
+   - Verificar valor exato
+   - Apply > Create Payment
+
+PAGAMENTOS:
+1. Identificar fornecedor/fatura
+2. Accounting > Bank Statements > [Extrato] > Reconcile  
+3. Selecionar movimento bancário
+4. Matching com fatura fornecedor:
+   - Vendor Bills > [Fatura pendente]
+   - Verificar valor exato
+   - Apply > Register Payment
+```
+
+##### **3. Movimentos Não Identificados**
+```
+Para transferências, taxas, juros:
+1. Create > Manual Entry
+2. Contra-partida adequada:
+   - Transferências: Conta bancária destino
+   - Taxas bancárias: 627 - Serviços bancários
+   - Juros recebidos: 791 - Juros obtidos
+   - Juros pagos: 691 - Juros suportados
+```
+
+##### **4. Validação Final**
+```
+Verificar:
+✅ Saldo inicial + Movimentos = Saldo final
+✅ Todas as linhas reconciliadas (sem cor vermelha)
+✅ Statement > Validate
+✅ Saldo conta contabilística = Saldo extrato
+```
+
+#### **Controlo de Qualidade**
+```
+Dashboard > Accounting > Bank Reconciliation Report
+- Filtrar por período
+- Verificar diferenças não reconciliadas
+- Analisar movimentos pendentes
+```
+
+---
+
+### **📅 Fecho Mensal (Encerramento do Mês)**
+
+#### **Processo Obrigatório Mensal**
+
+##### **1. Verificações Pré-Fecho**
+```
+Antes do dia 5 do mês seguinte:
+
+✅ RECONCILIAÇÕES:
+- Todas as contas bancárias reconciliadas
+- Clientes: Conta 211 sem valores estranhos
+- Fornecedores: Conta 221 sem valores estranhos
+
+✅ INVENTÁRIOS:
+- Stock físico vs sistema
+- Mercadoria em trânsito controlada
+
+✅ ACRÉSCIMOS E DIFERIMENTOS:
+- Custos e proveitos do mês lançados
+- Reversões do mês anterior
+```
+
+##### **2. Conta 31 - Resultado Líquido**
+```
+SIM - Obrigatório saldar conta 31 mensalmente:
+
+Accounting > Accounting > Chart of Accounts > 31
+1. Ver saldo da conta 31 (Resultado do exercício)
+2. Journal Entries > Create
+
+LANÇAMENTO DE ENCERRAMENTO:
+Se conta 31 tem saldo devedor (prejuízo):
+- Débito: 531 - Resultado líquido do exercício (transitado)
+- Crédito: 31 - Resultado líquido do exercício
+
+Se conta 31 tem saldo credor (lucro):
+- Débito: 31 - Resultado líquido do exercício  
+- Crédito: 531 - Resultado líquido do exercício (transitado)
+
+Data: Último dia do mês
+Referência: "Encerramento mês [MM/YYYY]"
+```
+
+##### **3. Validação Final do Mês**
+```
+Após fecho:
+✅ Conta 31 com saldo = 0
+✅ Balancete sem pendências
+✅ Demonstração de Resultados do mês fechada
+✅ SAF-T gerado e enviado para AT
+```
+
+---
+
+### **💰 Acréscimos de Custos e Proveitos**
+
+#### **Conceito**
+Registar custos/proveitos que pertencem ao mês, mas ainda não foram faturados ou recebidos.
+
+#### **Acréscimos de Custos (Exemplo: Eletricidade)**
+
+##### **Lançamento do Acréscimo (Último dia do mês)**
+```
+Accounting > Journal Entries > Create
+
+Estimativa de eletricidade de Janeiro: €500
+
+LANÇAMENTO:
+- Data: 31/01/2024
+- Referência: "Acréscimo eletricidade Janeiro 2024"
+- Débito: 622 - Eletricidade €500
+- Crédito: 228 - Acréscimos de custos €500
+
+Efeito: Custo reconhecido no mês correto
+```
+
+##### **Reversão do Acréscimo (1º dia do mês seguinte)**
+```
+Accounting > Journal Entries > Create
+
+LANÇAMENTO DE REVERSÃO:
+- Data: 01/02/2024  
+- Referência: "Reversão acréscimo eletricidade Janeiro"
+- Débito: 228 - Acréscimos de custos €500
+- Crédito: 622 - Eletricidade €500
+
+Efeito: Limpar o acréscimo para receber fatura real
+```
+
+##### **Fatura Real (Quando chegar)**
+```
+Vendor Bills > Create
+- Fatura real de eletricidade: €480
+- Débito: 622 - Eletricidade €480
+- Crédito: 221 - Fornecedores €480
+
+Resultado final: Custo correto no mês certo
+```
+
+#### **Acréscimos de Proveitos (Exemplo: Juros a Receber)**
+
+##### **Lançamento do Acréscimo**
+```
+Juros bancários calculados mas não creditados: €200
+
+LANÇAMENTO:
+- Data: 31/01/2024
+- Débito: 252 - Acréscimos de proveitos €200
+- Crédito: 791 - Juros obtidos €200
+```
+
+##### **Reversão e Recebimento**
+```
+REVERSÃO (01/02/2024):
+- Débito: 791 - Juros obtidos €200
+- Crédito: 252 - Acréscimos de proveitos €200
+
+QUANDO RECEBER:
+- Débito: 12 - Depósito à ordem €200
+- Crédito: 791 - Juros obtidos €200
+```
+
+---
+
+### **🚢 Controlo de Mercadoria em Trânsito**
+
+#### **Conceito Crítico**
+Stock virtual de mercadoria faturada/paga mas ainda não recebida fisicamente. **Essencial para controlo de cash-flow e inventário.**
+
+#### **🆕 SISTEMA VK TRANSIT TRADING**
+**Módulo especializado criado para VK Commodities - Trading Without Warehouse**
+
+##### **Acesso ao Sistema:**
+```
+Menu: VK Transit Trading
+- 🏠 Dashboard
+- 📦 Documentos
+  • DCT - Compras Trânsito
+  • DR - Receções  
+  • Todos os Documentos
+- 📊 Relatórios
+  • 📊 Mapa de Trânsito (PRINCIPAL)
+  • 📈 Resumo por Fornecedor
+```
+
+#### **Processo Completo**
+
+##### **1. DCT - Documento Compra Trânsito (NOVO SISTEMA)**
+```
+VK Transit Trading > Documentos > DCT - Compras Trânsito > Create
+
+CAMPOS OBRIGATÓRIOS:
+- Tipo: Documento Compra Trânsito (DCT)
+- Fornecedor: [Supplier]
+- Data Documento: [Data envio]
+- Data Chegada Esperada: [Estimativa]
+
+LINHAS DO DOCUMENTO:
+- Produto: [Item comprado]
+- Quantidade: 1000 unidades
+- Preço: €10/unidade
+- Peso: [Kg se aplicável]
+
+AÇÃO: Confirmar
+Efeito: Cria automaticamente movimentos contabilísticos:
+- Débito: 36.1 - Matérias Primas em Trânsito €10,000
+- Crédito: 221 - Fornecedores €10,000
+```
+
+##### **2. DR - Documento de Receção (NOVO SISTEMA)**
+```
+Quando mercadoria chega fisicamente:
+
+OPÇÃO A - CRIAR DR MANUAL:
+VK Transit Trading > Documentos > DR - Receções > Create
+- Tipo: Documento Receção (DR)
+- Fornecedor: [Mesmo do DCT]
+- Data: [Data chegada]
+- Linhas: [Produtos recebidos com quantidades]
+
+OPÇÃO B - RECONCILIAR COM DCT:
+VK Transit Trading > DCT [documento] > Reconciliar com Receção
+- Wizard automático para matching
+- Confirma quantidades recebidas vs enviadas
+- Trata diferenças se existirem
+
+MOVIMENTO AUTOMÁTICO (CORRETO):
+- Débito: 31 - Mercadorias €10,000
+- Crédito: 36.1 - Matérias Primas em Trânsito €10,000
+
+⚠️ ATENÇÃO CONTABILÍSTICA:
+• Conta 36.1 (CRÉDITO) = SAÍDA (-) = Diminui saldo de trânsito
+• Conta 31 (DÉBITO) = ENTRADA (+) = Aumenta saldo de stock físico
+Efeito: Transferir de trânsito para stock físico real
+```
+
+##### **3. Controlo e Reconciliação**
+
+###### **🎯 MAPA ESPECÍFICO DE TRÂNSITO (RESPOSTA À SUA PERGUNTA)**
+
+**📊 1. MAPA PRINCIPAL - VK TRANSIT TRADING**
+```
+VK Transit Trading > Relatórios > 📊 Mapa de Trânsito
+
+ESTE É O RELATÓRIO QUE PROCURA!
+✅ Mostra toda a mercadoria em trânsito
+✅ Quantidades enviadas vs recebidas  
+✅ Valores pendentes por fornecedor
+✅ Permite confirmar balancete conta 36.1
+✅ Exportável para Excel
+✅ Filtros por fornecedor, produto, data
+✅ Alertas de mercadoria em atraso
+```
+
+**📈 2. RESUMO POR FORNECEDOR**
+```
+VK Transit Trading > Relatórios > 📈 Resumo por Fornecedor
+
+MÉTRICAS EXECUTIVAS:
+✅ Total documentos por fornecedor
+✅ % Mercadoria recebida
+✅ % Mercadoria em atraso  
+✅ Dias médios em trânsito
+✅ Valores pendentes
+✅ Agrupamento por mês/categoria
+```
+
+**🏠 3. DASHBOARD OPERACIONAL**
+```
+VK Transit Trading > 🏠 Dashboard
+
+VISÃO GERAL INSTANTÂNEA:
+✅ Mercadoria em atraso (prioridade)
+✅ DCTs pendentes de receção
+✅ Valores críticos em trânsito
+✅ Kanban view por estado
+✅ Filtros rápidos
+```
+
+**📊 4. BALANCETE DAS CONTAS (Para Confirmação)**
+```
+Accounting > Reporting > Trial Balance
+- Filtrar período: Mês atual
+- Procurar contas:
+  • Conta 36.1 - Matérias Primas em Trânsito
+  • Conta 36.2 - Produtos Acabados em Trânsito  
+  • Conta 31 - Mercadorias (stock físico)
+- Comparar com Mapa de Trânsito
+```
+
+**📦 5. RELATÓRIOS TRADICIONAIS (Backup)**
+```
+Inventory > Reporting > Stock Moves
+- Movimentos físicos por location
+- Histórico de transferências
+
+Inventory > Reporting > Stock Valuation  
+- Valorização por location
+- Comparação Transit vs Stock
+```
+
+###### **Reconciliação Mensal**
+```
+FÓRMULA DE CONTROLO:
+Mercadoria em Trânsito = Faturas Lançadas - Entregas Recebidas
+
+### **📊 Mapa de Mercadoria em Trânsito (Novo!)**
+
+#### **🎯 Acesso Direto:**
+```
+Accounting > Reporting > 🚛 Mapa Mercadoria em Trânsito
+```
+
+#### **💡 O que Mostra:**
+- 📅 **Todos os movimentos** das contas 36x em tempo real
+- 🏢 **Fornecedores** com mercadoria pendente
+- 📦 **Produtos** específicos em trânsito
+- 💰 **Valores** exatos por movimento
+- 📄 **Referências** de facturas/documentos
+
+#### **🔍 Funcionalidades:**
+- ✅ **Filtro "Com Saldo"** (ativo por defeito)
+- ✅ **Pesquisa** por fornecedor, produto, referência
+- ✅ **Agrupamento** por conta, parceiro, produto
+- ✅ **Export** para Excel nativo
+- ✅ **Soma automática** de débitos, créditos, saldos
+
+#### **📊 Validação vs Balancete:**
+```
+🔄 PROCESSO SIMPLES:
+1. Accounting > Reporting > Trial Balance
+   - Filtrar contas 36x
+   - Anotar valores
+
+2. Accounting > Reporting > 🚛 Mapa Mercadoria
+   - Verificar soma dos saldos
+   - Comparar com balancete
+
+✅ VALORES IGUAIS = Situação correta!
+❌ DIFERENÇAS = Investigar discrepâncias
+```
+
+#### **🚨 Alertas Visuais:**
+- ✅ **Saldos positivos** = Mercadoria pendente normal
+- ⚠️ **Saldos negativos** = Requer investigação
+- 📊 **Somas automáticas** na base da lista
+
+#### **📈 Vantagens:**
+- ⚡ **Tempo real** - sempre atualizado
+- 🎯 **Específico** - só dados relevantes
+- 🔍 **Detalhado** - linha por linha
+- 📊 **Comparável** - facilita validação
+- 💾 **Exportável** - para análise externa
+
+EXEMPLO PRÁTICO:
+- Faturas Janeiro: €50,000
+- Entregas Janeiro: €45,000  
+- Mercadoria em trânsito: €5,000 ✅
+
+VERIFICAÇÕES:
+✅ Saldo conta 36 = €5,000
+✅ Stock location "Transit" = Quantidades pendentes
+✅ Aging Report < 60 dias (mercadoria não pode ficar muito tempo)
+```
+
+##### **4. INSTALAÇÃO E CONFIGURAÇÃO VK TRANSIT TRADING**
+
+###### **Passo 1: Instalar Módulo**
+```
+Apps > Update Apps List > Procurar "VK Transit Trading" > Install
+
+O módulo instala automaticamente:
+✅ Contas contabilísticas (36.1, 36.2)
+✅ Sequências para documentos (DCT, DR)
+✅ Menus e relatórios especializados
+✅ Permissões de acesso
+```
+
+###### **Passo 2: Configuração Inicial**
+```
+VK Transit Trading > 🏠 Dashboard > Verificar instalação
+
+CONFIGURAÇÕES AUTOMÁTICAS:
+✅ Conta 36.1 - Matérias Primas em Trânsito
+✅ Conta 36.2 - Produtos Acabados em Trânsito
+✅ Sequência DCT0001, DR0001
+✅ Diários de compra configurados
+```
+
+###### **Passo 3: Primeiro Uso**
+```
+1. VK Transit Trading > Documentos > DCT - Compras Trânsito > Create
+2. Preencher dados do fornecedor e produtos
+3. Confirmar documento
+4. Verificar movimentos contabilísticos
+5. Consultar Mapa de Trânsito
+```
+
+##### **5. ALERTAS E CONTROLOS AUTOMÁTICOS**
+
+###### **KPIs Integrados**
+```
+MÉTRICAS AUTOMÁTICAS NO SISTEMA:
+✅ Total em trânsito por fornecedor (€)
+✅ Idade média em trânsito (dias)
+✅ % Mercadoria recebida vs enviada
+✅ Top fornecedores em atraso
+✅ Mercadoria >30 dias (crítica)
+
+CÓDIGOS DE CORES:
+🟢 Normal: <15 dias
+🟡 Atenção: 15-30 dias  
+🔴 Crítico: >30 dias
+```
+
+###### **Alertas Visuais**
+```
+NO MAPA DE TRÂNSITO:
+- Linhas vermelhas: Mercadoria em atraso
+- Linhas verdes: Recebido com sucesso
+- Negrito: Valores pendentes altos
+- Filtro rápido: "Apenas em Atraso"
+```
+
+##### **6. Situações Especiais**
+
+###### **Mercadoria Perdida/Danificada**
+```
+Se mercadoria não chega:
+
+1. BAIXA DE STOCK VIRTUAL:
+- Débito: 671 - Perdas extraordinárias €X
+- Crédito: 36 - Mercadoria em trânsito €X
+
+2. RECLAM SEGURO/FORNECEDOR:
+- Débito: 268 - Outros devedores €X
+- Crédito: 791 - Outros proveitos €X
+```
+
+###### **Diferenças de Quantidade**
+```
+Enviado: 1000 unidades (€10,000)
+Recebido: 950 unidades
+
+LANÇAMENTO:
+- 950 unidades → Stock normal: €9,500
+- 50 unidades → Conta diferenças: €500
+
+Investigar e regularizar diferença
+```
+
+#### **📅 WORKFLOW DIÁRIO COM VK TRANSIT TRADING**
+
+##### **Rotina Diária (9h00)**
+```
+1. VK Transit Trading > 🏠 Dashboard
+   - Verificar mercadoria em atraso (vermelha)
+   - Follow-up fornecedores atrasados
+   
+2. VK Transit Trading > Relatórios > 📊 Mapa de Trânsito  
+   - Filtro: "Apenas Pendentes"
+   - Exportar para Excel
+   - Enviar para equipas operacionais
+```
+
+##### **Rotina Semanal (Segunda-feira)**
+```
+1. Reconciliação completa:
+   VK Transit Trading > Relatórios > 📈 Resumo por Fornecedor
+   - Verificar % recebido vs enviado
+   - Identificar fornecedores problemáticos
+   
+2. Validação contabilística:
+   Accounting > Trial Balance
+   - Conta 36.1 vs Mapa de Trânsito
+   - Diferenças = investigar urgente
+```
+
+##### **Rotina Mensal (Até dia 5)**
+```
+1. Fecho mensal mercadoria em trânsito:
+   - Gerar Mapa de Trânsito do mês anterior
+   - Conferir com balancete final
+   - Documentar diferenças permanentes
+   
+2. SAF-T com dados corretos:
+   - Conta 36.1 validada
+   - Movimentos DCT→DR completos
+   - Export SAF-T mensal
+```
+
+#### **📊 Relatórios Obrigatórios (Automatizados)**
+```
+DIÁRIO (AUTOMÁTICO):
+✅ Dashboard com alertas visuais
+✅ Mapa de Trânsito atualizado em tempo real
+✅ Lista de mercadoria >30 dias
+
+SEMANAL (AUTOMÁTICO):  
+✅ Resumo por fornecedor com KPIs
+✅ % Performance de entregas
+✅ Top 5 fornecedores em atraso
+
+MENSAL (MANUAL):
+✅ Export Mapa de Trânsito final
+✅ Reconciliação com balancete
+✅ Relatório executivo para gestão
+```
+
+---
+
 ## 📞 Contactos e Suporte
 
 ### Equipa VK Commodities
@@ -899,4 +1454,4 @@ Ficheiro fica em Downloads: SAFT_PT_[NIF]_[ANO].xml
 
 *Este manual é atualizado regularmente pela equipa VK Commodities. Para sugestões de melhoria, contacte suporte@vkcommodities.pt*
 
-**Última atualização**: 14 de agosto de 2024
+**Última atualização**: 15 de agosto de 2024 - Adicionado sistema VK Transit Trading especializado
