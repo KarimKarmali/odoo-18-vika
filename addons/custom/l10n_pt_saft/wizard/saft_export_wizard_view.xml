@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- SAF-T Export Wizard Form -->
+        <record id="view_saft_export_wizard_form" model="ir.ui.view">
+            <field name="name">SAF-T Export Wizard</field>
+            <field name="model">l10n.pt.saft.export.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Export SAF-T for Portugal">
+                    <header>
+                        <button name="action_generate_saft" 
+                                string="Generate SAF-T" 
+                                type="object" 
+                                class="btn-primary"
+                                invisible="state != 'draft'"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="state" widget="badge" 
+                                       decoration-info="state == 'draft'"
+                                       decoration-success="state == 'exported'"/>
+                            </h1>
+                        </div>
+                        
+                        <group string="Export Configuration" invisible="state != 'draft'">
+                            <group>
+                                <field name="company_id" options="{'no_create': True}"/>
+                                <field name="export_type"/>
+                            </group>
+                            <group>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                            </group>
+                        </group>
+                        
+                        <group string="Generated File" invisible="state != 'exported'">
+                            <field name="saft_filename" readonly="1"/>
+                            <field name="saft_file" filename="saft_filename" readonly="1"/>
+                        </group>
+                        
+                        <div class="alert alert-info" role="alert" invisible="state != 'draft'">
+                            <h4>📋 Important Information:</h4>
+                            <ul>
+                                <li><strong>Monthly Requirement:</strong> SAF-T must be submitted monthly to AT until the 5th of the following month</li>
+                                <li><strong>File Format:</strong> XML format according to AT specifications</li>
+                                <li><strong>Content:</strong> All accounting entries and invoices for the selected period</li>
+                                <li><strong>Validation:</strong> File will be validated before generation</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="alert alert-success" role="alert" invisible="state != 'exported'">
+                            <h4>✅ SAF-T File Generated Successfully!</h4>
+                            <p>
+                                Your SAF-T file has been generated and is ready for download.
+                                <br/>
+                                Submit this file to the Portuguese Tax Authority (AT) via Portal das Finanças.
+                            </p>
+                            <p>
+                                <strong>Next Steps:</strong>
+                                <br/>
+                                1. Download the XML file above
+                                <br/>
+                                2. Login to Portal das Finanças
+                                <br/>
+                                3. Go to "Entregar" → "Informação Empresarial" → "SAF-T (PT)"
+                                <br/>
+                                4. Upload the XML file
+                                <br/>
+                                5. Submit before the 5th of next month
+                            </p>
+                        </div>
+                        
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- SAF-T Export Action -->
+        <record id="action_saft_export_wizard" model="ir.actions.act_window">
+            <field name="name">Export SAF-T</field>
+            <field name="res_model">l10n.pt.saft.export.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_saft_export_wizard_form"/>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem id="menu_saft_export"
+                  name="SAF-T Export"
+                  parent="account.menu_finance_reports"
+                  action="action_saft_export_wizard"
+                  sequence="50"/>
+
+    </data>
+</odoo>

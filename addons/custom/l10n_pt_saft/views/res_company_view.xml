@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Company Form View Extension -->
+        <record id="view_company_form_saft" model="ir.ui.view">
+            <field name="name">res.company.form.saft</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="SAF-T Configuration" name="saft_config">
+                        <group string="SAF-T Settings">
+                            <group>
+                                <field name="saft_tax_registration_number"/>
+                                <field name="saft_company_registration_number"/>
+                            </group>
+                            <group>
+                                <field name="saft_legal_form"/>
+                            </group>
+                        </group>
+                        <div class="alert alert-info" role="alert">
+                            <h4>SAF-T Configuration</h4>
+                            <p>
+                                These fields are used for generating SAF-T files for the Portuguese Tax Authority.
+                                <br/>
+                                <strong>Tax Registration Number:</strong> Your company's NIF
+                                <br/>
+                                <strong>Company Registration Number:</strong> Matrícula da empresa
+                                <br/>
+                                <strong>Legal Form:</strong> Tipo de sociedade (ex: Lda, SA, etc.)
+                            </p>
+                        </div>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</odoo>

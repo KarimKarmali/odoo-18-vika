@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Partner Form View Extension -->
+        <record id="view_partner_form_saft" model="ir.ui.view">
+            <field name="name">res.partner.form.saft</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="SAF-T Configuration" name="saft_config">
+                        <group string="SAF-T Configuration">
+                            <field name="saft_customer_id" readonly="1" invisible="customer_rank == 0"/>
+                            <field name="saft_supplier_id" readonly="1" invisible="supplier_rank == 0"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Tax Form View Extension -->
+        <record id="view_tax_form_saft" model="ir.ui.view">
+            <field name="name">account.tax.form.saft</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="SAF-T Configuration" name="saft_config">
+                        <group string="SAF-T Settings">
+                            <group>
+                                <field name="saft_tax_type"/>
+                                <field name="saft_tax_code"/>
+                            </group>
+                            <group>
+                                <field name="saft_country_region"/>
+                            </group>
+                        </group>
+                        <div class="alert alert-info" role="alert">
+                            <h4>SAF-T Tax Configuration</h4>
+                            <p>
+                                Configure tax parameters for SAF-T reporting:
+                                <br/>
+                                <strong>Tax Type:</strong> Type of tax (IVA, IS, etc.)
+                                <br/>
+                                <strong>Tax Code:</strong> Code for tax identification
+                                <br/>
+                                <strong>Country/Region:</strong> Country or region code (usually PT)
+                            </p>
+                        </div>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Journal Form View Extension -->
+        <record id="view_account_journal_form_saft" model="ir.ui.view">
+            <field name="name">account.journal.form.saft</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="SAF-T Configuration" name="saft_config">
+                        <group string="SAF-T Settings">
+                            <field name="saft_journal_id" readonly="1"/>
+                        </group>
+                        <div class="alert alert-info" role="alert">
+                            <h4>SAF-T Journal Configuration</h4>
+                            <p>
+                                Journal ID used for SAF-T reporting. 
+                                This is automatically generated based on the journal code.
+                            </p>
+                        </div>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</odoo>
